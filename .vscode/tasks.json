@@ -1,0 +1,43 @@
+
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "solium linting",
+          "command": "cd inbox && yarn solium -d . --reporter=gcc --watch",
+          "type": "shell",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+          "presentation": {
+              "reveal": "always",
+              "panel": "new"
+          },
+          "isBackground": true,
+          "problemMatcher": {
+              "owner": "solium",
+              "applyTo": "openDocuments",
+              "fileLocation": [
+                  "absolute"
+              ],
+              "pattern": {
+                  "regexp": "^(.*?):(\\d+):(\\d+): (warning|error): (.*)$",
+                  "file": 1,
+                  "line": 2,
+                  "column": 3,
+                  "severity": 4,
+                  "message": 5
+              },
+              "background": {
+                  "activeOnStart": true,
+                  "beginsPattern": "^File change detected\\. Start linting\\.$",
+                  "endsPattern": "^Linting complete\\. Watching for file changes\\.$"
+              }
+          },
+          "runOptions": {
+            "runOn": "folderOpen"
+          }
+      }
+  ]
+}
